@@ -1,123 +1,128 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Polymer Animation Components</title>
-    <link rel="import" href="polymer-animation.html">
-    <link rel="import" href="polymer-animation-group.html">
-    <link rel="import" href="polymer-blink.html">
-    <link rel="import" href="polymer-bounce.html">
-    <link rel="import" href="polymer-fadein.html">
-    <link rel="import" href="polymer-fadeout.html">
-    <link rel="import" href="polymer-flip.html">
-    <link rel="import" href="polymer-shake.html">
-    <script src="../platform/platform.js"></script>
-    <style>
-      body {
-        text-align: center;
-        font-family: Helvetica, sans-serif;
+<head>
+  <title>polymer api</title>
+  <style>
+    html, body {
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    [nobowager] [ifnobowager], [noviewer] [ifnoviewer] {
+      display: block;
+    }
+    [detector], [ifnobowager], [ifnoviewer], [nobowager] [ifbowager], [noviewer] [ifviewer] {
+      display: none;
+    }
+    img {
+      vertical-align: middle;
+      height: 22px;
+      padding: 0 4px 2px 0;
+    }
+    div {
+      display: inline-block;
+    }
+    h2 {
+      display: inline-block;
+      margin: 0px 6px;
+      vertical-align: middle;
+    }
+    .choiceB, .choiceC {
+      font-size: 0.8em;
+      display: inline-block;
+      white-space: nowrap;
+      padding: 0px 16px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #eee;
+      border-radius: 23px;
+    }
+    .choiceB {
+      background-color: #BF8A30;
+    }
+    .choiceC {
+      background-color: #284B7E;
+    }
+    .choiceB:hover {
+      background-color: #C7F83E;
+      color: #222;
+    }
+    .choiceC:hover {
+      background-color: #C7F83E;
+      color: #222;
+    }
+    a {
+      text-decoration: none;
+    }
+    polymer-doc-viewer {
+      display: block;
+      position: absolute;
+      top: 56px;
+      right: 0;
+      bottom: 0px;
+      left: 0;
+      border: 1px solid silver;
+    }
+  </style>
+  <script src="../platform/platform.js"></script>
+  <link rel="import" href="../polymer-doc-viewer/polymer-doc-viewer.html">
+</head>
+<body>
+  <!-- detection-->
+  <img detector src="../Bowager/static/bowager-logo.png" onerror="nobowager()">
+  <img detector src="../polymer-doc-viewer/bowager-logo.png" onerror="noviewer()">
+  <script>
+    function nobowager() {
+      document.body.setAttribute('nobowager', '');
+    }
+    function noviewer() {
+      document.body.setAttribute('noviewer', '');
+    }
+    // for testing only
+    window.addEventListener('load', function() {
+      var opts = window.location.search;
+      if (opts.indexOf('viewer') >= 0) {
+        document.body.removeAttribute('noviewer');
       }
-      div#target {
-        display: inline-block;
-        background-color: dimgrey;
-        border-radius: 5px;
-        padding: 5px 10px;
-        margin: 50px;
-        font-size: 30px;
-        color: white;
+      if (opts.indexOf('bowager') >= 0) {
+        document.body.removeAttribute('nobowager');
       }
-      div.animations > * {
-        display: inline-block;
-        background-color: darkgrey;
-        border-radius: 5px;
-        padding: 5px 10px;
-        margin: 5px;
-        color: white;
+      if (opts.indexOf('noviewer') >= 0) {
+        document.body.setAttribute('noviewer', '');
       }
-    </style>
-  </head>
-  <body>
-    <div id="target">animated!</div>
-    <div class="animations">
-			<polymer-animation duration="1">
-				raw
-        <polymer-animation-keyframe>
-          <polymer-animation-prop name="opacity" value="1">
-          </polymer-animation-prop>
-				</polymer-animation-keyframe>
-        <polymer-animation-keyframe>
-          <polymer-animation-prop name="opacity" value="0.3">
-          </polymer-animation-prop>
-				</polymer-animation-keyframe>
-        <polymer-animation-keyframe>
-          <polymer-animation-prop name="opacity" value="1">
-          </polymer-animation-prop>
-				</polymer-animation-keyframe>
-			</polymer-animation>
-			<polymer-animation-group type="seq">
-				raw group
-				<polymer-animation duration="0.3">
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="opacity" value="1">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="opacity" value="0.3">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="opacity" value="1">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-				</polymer-animation>
-				<polymer-animation duration="0.3">
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="transform" value="scale(1)">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="transform" value="scale(1.2)">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-          <polymer-animation-keyframe>
-            <polymer-animation-prop name="transform" value="scale(1)">
-            </polymer-animation-prop>
-          </polymer-animation-keyframe>
-				</polymer-animation>
-			</polymer-animation-group>
-      <polymer-animation id="sample-animation" duration="0.5">sample</polymer-animation>
-      <polymer-bounce duration="1">bounce</polymer-bounce>
-      <polymer-shake>shake</polymer-shake>
-      <!--<polymer-shake duration="Infinity">shake forever</polymer-shake>//-->
-      <polymer-flip>flip X</polymer-flip>
-      <polymer-flip axis="y">flip Y</polymer-flip>
-      <polymer-blink>blink</polymer-blink>
-      <polymer-fadein>fade in</polymer-fadein>
-      <polymer-fadeout>fade out (with event)</polymer-fadeout>
-    </div>
-    <script>
-      var sampleAnimationFn = function(timeFraction, currentIteration, animationTarget, underlyingValue) {
-        if (timeFraction < 1) {
-          animationTarget.textContent = timeFraction;
-        } else {
-          animationTarget.textContent = 'animated!';
-        }
-      };
-
-      document.addEventListener('WebComponentsReady', function() {
-        document.querySelector('.animations').addEventListener('click',
-					function(e) {
-            var animation = e.target;
-            if (animation.id === 'sample-animation') {
-              animation.sample = sampleAnimationFn;
-            }
-						animation.target = target;
-						animation.play();
-					});
-					document.querySelector('polymer-fadeout').addEventListener(
-						'complete', function(e) {
-							alert('complete!');
-						});
-      });
-    </script>
-  </body>
+      if (opts.indexOf('nobowager') >= 0) {
+        document.body.setAttribute('nobowager', '');
+      }
+    });
+  </script>
+  <!-- -->
+  <h2>polymer api</h2>
+  <div ifnoviewer>
+    <p>See the <a target="_blank" href="http://itch.selfip.net/bowertopia/components/polymer-ajax/doc.html">remote docs.</a></p>
+    <p>Play with this element in the <a href="http://itch.selfip.net/bowertopia/designer/?element=polymer-ajax">remote sandbox.</a></p>
+    <p>See the <a target="_blank" href="smoke.html">smoke test.</a></p>
+    <hr>
+    <p>To access these tools locally, install the <code>polymer-catalog-tools</code> package.</p>
+    <code>bower install Polymer/polymer-catalog-tools</code>
+    <br>
+    <p ifbowager>
+      Or use <a ifbowager target="_blank" href="foo">one-click install <img src="../Bowager/static/bowager-logo.png" title="install via bowager"></a>
+    </p>
+    <p ifnobowager>
+      Pro tip: consider using Bowager for web-enabled installs.
+    </p>
+  </div>
+  <h2 ifviewer>
+    <a class="choiceB" target="_blank" id="sandbox">sandbox</a>
+    <a class="choiceC" target="_blank" href="smoke.html">smoke test</a>
+    <polymer-doc-viewer url="docs.json"></polymer-doc-viewer>
+  </h2>
+  <script>
+    var pathName = location.pathname.split('/');
+    moduleName = pathName.pop() || pathName.pop();
+    document.querySelector('title').textContent = moduleName;
+    document.querySelector('h2').textContent = moduleName;
+    document.querySelector('#sandbox').href = '../../designer/?element=' + moduleName;
+  </script>
+</body>
 </html>
