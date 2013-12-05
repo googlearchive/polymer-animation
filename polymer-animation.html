@@ -179,6 +179,7 @@
           if (this.animation && !this.autoplay) {
             this.bindAnimationEvents();
             this.player = document.timeline.play(this.animation);
+            return this.player;
           }
         },
         /**
