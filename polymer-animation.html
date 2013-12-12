@@ -203,6 +203,8 @@
           return this.animation;
         },
         makeSingleAnimation: function(target) {
+          // XXX(yvonne): for selecting all the animated elements.
+          target.classList.add('polymer-animation-target');
           return new Animation(target, this.animationEffect, this.timingProps);
         },
         makeAnimation: function() {
@@ -231,6 +233,11 @@
         targetSelectorChanged: function() {
           if (this.targetSelector) {
             this.target = findTarget(this.targetSelector, this);
+          }
+        },
+        targetChanged: function(old) {
+          if (old) {
+            old.classList.remove('polymer-animation-target');
           }
         },
         get timingProps() {
