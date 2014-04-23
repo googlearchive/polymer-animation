@@ -38,7 +38,7 @@
   <body>
     <div id="target">animated!</div>
     <div class="animations">
-			<polymer-animation duration="1">
+			<polymer-animation duration="1000">
 				raw
         <polymer-animation-keyframe>
           <polymer-animation-prop name="opacity" value="1">
@@ -55,7 +55,7 @@
 			</polymer-animation>
 			<polymer-animation-group type="seq">
 				raw group
-				<polymer-animation duration="0.3">
+				<polymer-animation duration="300">
           <polymer-animation-keyframe>
             <polymer-animation-prop name="opacity" value="1">
             </polymer-animation-prop>
@@ -69,7 +69,7 @@
             </polymer-animation-prop>
           </polymer-animation-keyframe>
 				</polymer-animation>
-				<polymer-animation duration="0.3">
+				<polymer-animation duration="300">
           <polymer-animation-keyframe>
             <polymer-animation-prop name="transform" value="scale(1)">
             </polymer-animation-prop>
@@ -84,8 +84,8 @@
           </polymer-animation-keyframe>
 				</polymer-animation>
 			</polymer-animation-group>
-      <polymer-animation id="sample-animation" duration="0.5">sample</polymer-animation>
-      <polymer-bounce duration="1">bounce</polymer-bounce>
+      <polymer-animation id="sample-animation" duration="500">sample</polymer-animation>
+      <polymer-bounce duration="1000">bounce</polymer-bounce>
       <polymer-shake>shake</polymer-shake>
       <!--<polymer-shake duration="Infinity">shake forever</polymer-shake>//-->
       <polymer-flip>flip X</polymer-flip>
