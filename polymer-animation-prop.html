@@ -18,6 +18,11 @@
       * @property value
       * @required
       */
-      Polymer('polymer-animation-prop');
+      Polymer('polymer-animation-prop', {
+        publish: {
+          name: {value: '', reflect: true},
+          value: {value: '', reflect: true}
+        }
+      });
   </script>
 </polymer-element>

@@ -17,29 +17,21 @@
        * @class polymer-animation-group
        */
       Polymer('polymer-animation-group', {
-        /**
-         * If specified the target will be assigned to all child animations.
-         * @property target
-         * @type HTMLElement|Node
-         * @default null
-         */
-        targetSelector: '',
-        /**
-         * If specified and not "auto" the duration will apply to the group
-         * and propagate to any child animations that is not a group and does
-         * not specify a duration.
-         * @property duration
-         * @type number
-         * @default "auto"
-         */
-        duration: 'auto',
-        /**
-         * Group type. 'par' for parallel and 'seq' for sequence.
-         * @property type
-         * @type String
-         * @default 'par'
-         */
-        type: 'par',
+        publish: {
+          /**
+           * @property duration
+           * @type number
+           * @default "auto"
+           */
+          duration: {value: 'auto', reflect: true},
+          /**
+           * Group type. 'par' for parallel and 'seq' for sequence.
+           * @property type
+           * @type String
+           * @default 'par'
+           */
+          type: {value: 'par', reflect: true}
+        },
         typeChanged: function() {
           this.apply();
         },

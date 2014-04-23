@@ -59,100 +59,102 @@
         * 
         */
       Polymer('polymer-animation', {
-        /**
-         * One or more nodes to animate.
-         * @property target
-         * @type HTMLElement|Node|Array<HTMLElement|Node>
-         */
-        target: null,
-        /**
-         * Selector for the node being animated.
-         * @property targetSelector
-         * @type String
-         */
-        targetSelector: '',
-        // animation
-        /**
-         * Animation keyframes specified as an array of dictionaries of
-         * &lt;css properties&gt;:&lt;array of values&gt; pairs. For example,
-         * @property keyframes
-         * @type Object
-         */
-        keyframes: null,
-        /**
-         * A custom animation function. Either provide this or keyframes.
-         * @property sample
-         * @type Function
-         */
-        sample: null,
-        //accumulate: null, // not working in polyfill
-        /**
-         * The composition behavior. "replace", "add" or "merge".
-         * @property composite
-         * @type "replace"|"add"|"merge"
-         * @default "replace"
-         */
-        composite: 'replace',
-        // timing
-        /**
-         * Animation duration in milliseconds, 'infinity' or 'auto'. 'auto'
-         * means use the animation's intrinsic duration.
-         * @property duration
-         * @type Number|"Infinity"|"auto"
-         * @default "auto"
-         */
-        duration: 'auto',
-        /**
-         * "none", "forwards", "backwards", "both" or "auto". When set to
-         * "auto", the fill is "none" for a polymer-animation and "both"
-         * for a polymer-animation-group.
-         * @property fill
-         * @type "none"|"forwards"|"backwards"|"both"|"auto"
-         * @default "auto"
-         */
-        fill: 'auto',
-        /**
-         * A transition timing function.
-         * @property easing
-         * @type "linear"|"ease"|"ease-in"|"ease-out"|"ease-in-out"|
-         *     "step-start"|"step-middle"|"step-end"
-         * @default "linear"
-         */
-        easing: 'linear',
-        /**
-         * Number of iterations into the timed item in which to begin
-         * the animation. e.g. 0.5 will cause the animation to begin
-         * halfway through the first iteration.
-         * @property iterationStart
-         * @type Number
-         * @default 0
-         */
-        iterationStart: 0,
-        /**
-         * @property iterationCount
-         * @type Number|'Infinity'
-         * @default 1
-         */
-        iterationCount: 1,
-        /**
-         * Delay in milliseconds.
-         * @property delay
-         * @type Number
-         * @default 0
-         */
-        delay: 0,
-        /**
-         * @property direction
-         * @type "normal"|"reverse"|"alternate"|"alternate-reverse"
-         * @default "normal"
-         */
-        direction: 'normal',
-        /**
-         * @property autoplay
-         * @type Boolean
-         * @default false
-         */
-        autoplay: false,
+        publish: {
+          /**
+           * One or more nodes to animate.
+           * @property target
+           * @type HTMLElement|Node|Array<HTMLElement|Node>
+           */
+          target: {value: null, reflect: true},
+          /**
+           * Selector for the node being animated.
+           * @property targetSelector
+           * @type String
+           */
+          targetSelector: {value: '', reflect: true},
+          // animation
+          /**
+           * Animation keyframes specified as an array of dictionaries of
+           * &lt;css properties&gt;:&lt;array of values&gt; pairs. For example,
+           * @property keyframes
+           * @type Object
+           */
+          keyframes: {value: null, reflect: true},
+          /**
+           * A custom animation function. Either provide this or keyframes.
+           * @property sample
+           * @type Function
+           */
+          sample: {value: null, reflect: true},
+          //accumulate: null, // not working in polyfill
+          /**
+           * The composition behavior. "replace", "add" or "merge".
+           * @property composite
+           * @type "replace"|"add"|"merge"
+           * @default "replace"
+           */
+          composite: {value: 'replace', reflect: true},
+          // timing
+          /**
+           * Animation duration in milliseconds, 'infinity' or 'auto'. 'auto'
+           * means use the animation's intrinsic duration.
+           * @property duration
+           * @type Number|"Infinity"|"auto"
+           * @default "auto"
+           */
+          duration: {value: 'auto', reflect: true},
+          /**
+           * "none", "forwards", "backwards", "both" or "auto". When set to
+           * "auto", the fill is "none" for a polymer-animation and "both"
+           * for a polymer-animation-group.
+           * @property fill
+           * @type "none"|"forwards"|"backwards"|"both"|"auto"
+           * @default "auto"
+           */
+          fill: {value: 'auto', reflect: true},
+          /**
+           * A transition timing function.
+           * @property easing
+           * @type "linear"|"ease"|"ease-in"|"ease-out"|"ease-in-out"|
+           *     "step-start"|"step-middle"|"step-end"
+           * @default "linear"
+           */
+          easing: {value: 'linear', reflect: true},
+          /**
+           * Number of iterations into the timed item in which to begin
+           * the animation. e.g. 0.5 will cause the animation to begin
+           * halfway through the first iteration.
+           * @property iterationStart
+           * @type Number
+           * @default 0
+           */
+          iterationStart: {value: 0, reflect: true},
+          /**
+           * @property iterationCount
+           * @type Number|'Infinity'
+           * @default 1
+           */
+          iterationCount: {value: 1, reflect: true},
+          /**
+           * Delay in milliseconds.
+           * @property delay
+           * @type Number
+           * @default 0
+           */
+          delay: {value: 0, reflect: true},
+          /**
+           * @property direction
+           * @type "normal"|"reverse"|"alternate"|"alternate-reverse"
+           * @default "normal"
+           */
+          direction: {value: 'normal', reflect: true},
+          /**
+           * @property autoplay
+           * @type Boolean
+           * @default false
+           */
+          autoplay: {value: false, reflect: true}
+        },
         animation: false,
         observe: {
           target: 'apply',
