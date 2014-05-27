@@ -220,7 +220,7 @@
             this.target.forEach(function(t) {
               array.push(this.makeSingleAnimation(t));
             }.bind(this));
-            animation = new ParGroup(array);
+            animation = new AnimationGroup(array);
           } else {
             animation = this.makeSingleAnimation(this.target);
           }
